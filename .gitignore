@@ -1,4 +1,5 @@
 node_modules
-*.js
+client/**/*.js
+!client/systemjs.config.js
 *.js.map
 .idea

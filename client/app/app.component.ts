@@ -29,13 +29,14 @@ import 'rxjs/add/operator/toPromise';
 })
 
 export class AppComponent implements OnInit{
+  todos: Array<any> = [];
+  text: string = "";
+  
+  constructor(private http: Http) {}
   
   ngOnInit(): void {
     this.http.get('/api/todos').toPromise().then(res => this.todos = res.json())
   }
-  
-  todos: Array<any> = [{'done': false, 'text': 'Apprendre Angular2'}];
-  text: string = "";
   
   ajouter() {
     this.todos.push({ done: false, text: this.text});
@@ -45,8 +46,6 @@ export class AppComponent implements OnInit{
   effacer() {
     this.todos = [];
   }
-  
-  constructor(private http: Http) {}
   
   restant(): number {
     return this.todos.filter(e => e.done).length;
