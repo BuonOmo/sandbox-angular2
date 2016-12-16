@@ -1,4 +1,8 @@
-import { Component  } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Http} from "@angular/http";
+
+import 'rxjs/add/operator/toPromise';
+
 
 @Component({
   selector: 'mon-app',
@@ -24,7 +28,12 @@ import { Component  } from '@angular/core';
 `]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
+  
+  ngOnInit(): void {
+    this.http.get('/api/todos').toPromise().then(res => this.todos = res.json())
+  }
+  
   todos: Array<any> = [{'done': false, 'text': 'Apprendre Angular2'}];
   text: string = "";
   
@@ -36,6 +45,8 @@ export class AppComponent {
   effacer() {
     this.todos = [];
   }
+  
+  constructor(private http: Http) {}
   
   restant(): number {
     return this.todos.filter(e => e.done).length;
