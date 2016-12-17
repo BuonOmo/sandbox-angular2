@@ -1,0 +1,11 @@
+<div>
+    <h2>Traducteur</h2>
+    <p><textarea cols="20" rows="10" [(ngModel)]="texteATraduire" [ngClass]="texteATraduire.length <= longueurMax ? 'vert' : 'rouge'">
+    </textarea></p>
+    <p>
+        <button>Envoyer</button>
+        <button>Effacer</button>
+    </p>
+    <p>Nombre de caractères restants: <span> {{longueurMax - texteATraduire.length}} </span></p>
+    <p><span>Message traduit:</span> <span>Résultat</span></p>
+</div>
