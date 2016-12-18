@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {Http} from "@angular/http";
+
+import 'rxjs/add/operator/toPromise';
+
 const MAX_LENGTH = 50;
 
 @Component({
@@ -13,9 +17,23 @@ const MAX_LENGTH = 50;
 
 export class AppComponent implements OnInit {
   texteATraduire: string;
+  traduction: string;
   longueurMax: number = MAX_LENGTH;
   
   ngOnInit(): void {
     this.texteATraduire = "traduis moi";
+  }
+  
+  constructor(private http: Http) {}
+  
+  envoyer(): void {
+    this.http.post('/traduire', { texte: this.texteATraduire }).toPromise().then(data =>
+      this.traduction = data.json().texte
+    ).catch(error => console.error(error));
+  }
+  
+  effacer() {
+    this.texteATraduire = "";
+    this.traduction = "";
   }
 }
