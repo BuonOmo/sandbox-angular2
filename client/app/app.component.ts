@@ -27,15 +27,18 @@ import 'rxjs/add/operator/toPromise';
     .done { color: #aaaaaa; }
 `]
 })
-
+class Todo {
+ done: boolean;
+ text: string;
+}
 export class AppComponent implements OnInit{
-  todos: Array<any> = [];
+  todos: Array<Todo> = [];
   text: string = "";
   
   constructor(private http: Http) {}
   
   ngOnInit(): void {
-    this.http.get('/api/todos').toPromise().then(res => this.todos = res.json())
+    this.http.get('/api/todos').toPromise().then(res => this.todos = res.json() as Array<Todo>)
   }
   
   ajouter() {
