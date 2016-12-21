@@ -4,10 +4,11 @@ import { FormsModule  }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import {HttpModule} from "@angular/http";
+import {CeilPipe} from "./ceil.pipe";
 
 @NgModule({
   imports: [ BrowserModule, FormsModule, HttpModule ],
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, CeilPipe ],
   bootstrap: [ AppComponent ]
 })
 
