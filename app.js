@@ -25,6 +25,16 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use('/', routes);
 app.use('/users', users);
 
+
+function traduire(texte) {
+  return "Illum sint vitae praesentium eos numquam omnis magni"
+}
+app.use('/traduire', function(req, res, next) {
+  res.json({ texte: traduire(req.body.texte)});
+});
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

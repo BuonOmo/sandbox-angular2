@@ -8,5 +8,5 @@
         <button (click)="effacer()">Effacer</button>
     </p>
     <p>Nombre de caractères restants: <span> {{longueurMax - texteATraduire.length}} </span></p>
-    <p><span>Message traduit:</span> <span>{{traduction}}</span></p>
+    <p *ngIf="traduction"><span>Message traduit:</span> <span>{{traduction}}</span></p>
 </div>

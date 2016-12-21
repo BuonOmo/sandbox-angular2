@@ -27,9 +27,10 @@ export class AppComponent implements OnInit {
   constructor(private http: Http) {}
   
   envoyer(): void {
-    this.http.post('/traduire', { texte: this.texteATraduire }).toPromise().then(data =>
-      this.traduction = data.json().texte
-    ).catch(error => console.error(error));
+    if (this.texteATraduire.length <= MAX_LENGTH)
+      this.http.post('/traduire', { texte: this.texteATraduire }).toPromise().then(data =>
+        this.traduction = data.json().texte
+      ).catch(error => console.error(error));
   }
   
   effacer() {
